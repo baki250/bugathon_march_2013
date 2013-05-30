@@ -35,6 +35,10 @@ Mage.Cookies.set = function(name, value){
      var argv = arguments;
      var argc = arguments.length;
      var expires = (argc > 2) ? argv[2] : Mage.Cookies.expires;
+     if (typeof expires === 'number') {
+       var days = expires, t = expires = new Date();
+       t.setDate(t.getDate() + days);
+     }
      var path = (argc > 3) ? argv[3] : Mage.Cookies.path;
      var domain = (argc > 4) ? argv[4] : Mage.Cookies.domain;
      var secure = (argc > 5) ? argv[5] : Mage.Cookies.secure;
